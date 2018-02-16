@@ -22,9 +22,9 @@
 -- date: february 2018
 -- license: GPL version 3 or later
 
-require 'filters/util'
-
 local smallcapsStyle = 'Versalete'
+
+require 'filters/util'
 
 function SmallCaps (sc)
   if FORMAT == 'odt' then
