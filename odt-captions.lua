@@ -50,6 +50,8 @@ local function correctCaption(caption, id, sequenceName)
   return newCaption
 end
 
+-- These names are NOT for customization; instead, they are internally
+-- used by LibreOffice to generate lists of figures/tables.
 local sequenceNames = {}
 sequenceNames.image = 'Illustration'
 sequenceNames.table = 'Table'
