@@ -16,9 +16,9 @@
 -- date: february 2018
 -- license: GPL version 3 or later
 
-require 'filters/util'
-
 local bibliographyStyle = 'Bibliography_20_1'
+
+require 'filters/util'
 
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.classes[1] then
