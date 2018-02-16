@@ -19,6 +19,8 @@
 -- date: february 2018
 -- license: GPL version 3 or later
 
+local unnumberedStyle = 'Título_20_textual'
+
 require 'filters/util'
 
 function Div (div)
@@ -46,8 +48,6 @@ function Span (sp)
     end
   end
 end
-
-local unnumberedStyle = 'Título_20_textual'
 
 function Header (hx)
   if FORMAT == 'odt' and hx.attr and hx.attr.classes[1] then
