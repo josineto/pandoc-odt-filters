@@ -2,7 +2,7 @@
 
 Filters to improve Pandoc's conversion to ODT. [Pandoc](https://github.com/jgm/pandoc) is a great tool to convert between document formats, but conversion to ODT ([OpenDocument](https://en.wikipedia.org/wiki/OpenDocument) format) is poor in some aspects. These filters attempt to workaround those aspects.
 
-At the beginning of each file (it's just a plain text file, you can open with any text editor), there's a little text explaining what the filter does. Please read carefully that little text, and decide by yourself if that filter works for your particular case. In case where customization is possible, there are local variables at the very beginning of code, after text and `require`s.
+At the beginning of each file (it's just a plain text file, you can open with any text editor), there's a little text explaining what the filter does. Please read carefully that little text, and decide by yourself if that filter works for your particular case. In case where customization is possible, there are local variables at the very beginning of code, after text and *before* all `require`s.
 
 All these filters are **not** guaranteed to work, as I wrote them only to address Pandoc's problems in ODT writer. Hopefully, in the near future none of them will be necessary, as Pandoc's ODT writer become more robust.
 
