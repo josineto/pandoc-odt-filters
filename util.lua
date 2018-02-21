@@ -63,23 +63,30 @@ local strongFilter = function(strong)
   return pandoc.Str(content)
 end
 
-util.inlineToRaw = {
-  Emph = emphFilter,
-  Strong = strongFilter
-}
+local rawInlineFilter = function(raw)
+  return pandoc.Str(raw.text)
+end
 
 local lineBlockSeparator = '<text:line-break />'
+local lineBlockFilter = function (lb)
+  local newContent = {}
+  for _,el in pairs(lb.content) do
+    table.insert(newContent, el)
+    table.insert(newContent, {pandoc.Str(lineBlockSeparator)})
+  end
+  lb.content = newContent
+  return lb
+end
+
+util.inlineToRaw = {
+  Emph = emphFilter,
+  Strong = strongFilter,
+  RawInline = rawInlineFilter
+}
 
 util.blockToRaw = {
   Emph = emphFilter,
   Strong = strongFilter,
-  LineBlock = function (lb)
-    local newContent = {}
-    for _,el in pairs(lb.content) do
-      table.insert(newContent, el)
-      table.insert(newContent, {pandoc.Str(lineBlockSeparator)})
-    end
-    lb.content = newContent
-    return lb
-  end
+  RawInline = rawInlineFilter,
+  LineBlock = lineBlockFilter
 }
