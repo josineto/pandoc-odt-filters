@@ -8,8 +8,8 @@
 -- This filter will become useless when pandoc finally implement custom styles
 -- in ODT writer (see https://github.com/jgm/pandoc/issues/2106 on this).
 --
--- Currently, just italics, bold and line blocks are preserved in divs, and
--- italics and bold are preserved in spans, but all other markup is ignored.
+-- Currently, just italics, bold, links and line blocks are preserved in divs,
+-- and italics, bold and links in spans; all other markup is ignored.
 --
 -- dependencies: util.lua, need to be in "filters/" relative to the directory
 --               where pandoc is run
@@ -27,9 +27,9 @@ function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.attributes then
     local customStyle = div.attr.attributes['custom-style']
     if customStyle then
+      div = pandoc.walk_block(div, util.blockToRaw)
       local startTag = '<text:p text:style-name=\"' .. customStyle .. '\">'
       local endTag = '</text:p>'
-      div = pandoc.walk_block(div, util.blockToRaw)
       local content = startTag .. pandoc.utils.stringify(div) .. endTag
       return pandoc.RawBlock('opendocument',content)
     end
@@ -40,9 +40,9 @@ function Span (sp)
   if FORMAT == 'odt' and sp.attr and sp.attr.attributes then
     local customStyle = sp.attr.attributes['custom-style']
     if customStyle then
+      sp = pandoc.walk_inline(sp, util.inlineToRaw)
       local startTag = '<text:span text:style-name=\"' .. customStyle .. '\">'
       local endTag = '</text:span>'
-      sp = pandoc.walk_inline(sp, util.inlineToRaw)
       local content = startTag .. pandoc.utils.stringify(sp) .. endTag
       return pandoc.RawInline('opendocument', content)
     end
@@ -55,9 +55,9 @@ function Header (hx)
     if class == 'unnumbered' then
       class = unnumberedStyle
     end
+    hx = pandoc.walk_block(hx, util.blockToRaw)
     local startTag = '<text:h text:style-name=\"' .. class .. '\" text:outline-level=\"' .. hx.level .. '\">'
     local endTag = '</text:h>'
-    hx = pandoc.walk_block(hx, util.blockToRaw)
     local content = startTag .. pandoc.utils.stringify(hx) .. endTag
     return pandoc.RawBlock('opendocument',content)
   end

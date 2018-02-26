@@ -49,44 +49,60 @@ util.isTableDiv = function (div)
   return tableDiv
 end
 
-local emphStartTag = '<text:span text:style-name=\"Emphasis\">'
-local strongStartTag = '<text:span text:style-name=\"Strong_20_Emphasis\">'
-local spanEndTag = '</text:span>'
+local tags = {}
+tags.emph = '<text:span text:style-name=\"Emphasis\">'
+tags.strong = '<text:span text:style-name=\"Strong_20_Emphasis\">'
+tags.spanEnd = '</text:span>'
+tags.linkEnd = '</text:a>'
+tags.lineBreak = '<text:line-break />'
 
-local emphFilter = function(emph)
-  local content = emphStartTag .. pandoc.utils.stringify(emph) .. spanEndTag
+local filters = {}
+filters.emph = function(emph)
+  local content = tags.emph .. pandoc.utils.stringify(emph) .. tags.spanEnd
   return pandoc.Str(content)
 end
 
-local strongFilter = function(strong)
-  local content = strongStartTag .. pandoc.utils.stringify(strong) .. spanEndTag
+filters.strong = function(strong)
+  local content = tags.strong .. pandoc.utils.stringify(strong) .. tags.spanEnd
   return pandoc.Str(content)
 end
 
-local rawInlineFilter = function(raw)
+filters.link = function(link)
+  local linkTag = '<text:a xlink:type=\"simple\" xlink:href=\"' .. link.target .. '\" office:name=\"\">'
+  local content = linkTag .. pandoc.utils.stringify(link) .. tags.linkEnd
+  return pandoc.Str(content)
+end
+
+filters.rawInline = function(raw)
   return pandoc.Str(raw.text)
 end
 
-local lineBlockSeparator = '<text:line-break />'
-local lineBlockFilter = function (lb)
+filters.rawBlock = function(raw)
+  return pandoc.Str(raw.text)
+end
+
+filters.lineBlock = function (lb)
   local newContent = {}
   for _,el in pairs(lb.content) do
     table.insert(newContent, el)
-    table.insert(newContent, {pandoc.Str(lineBlockSeparator)})
+    table.insert(newContent, {pandoc.Str(tags.lineBreak)})
   end
   lb.content = newContent
   return lb
 end
 
 util.inlineToRaw = {
-  Emph = emphFilter,
-  Strong = strongFilter,
-  RawInline = rawInlineFilter
+  Emph = filters.emph,
+  Strong = filters.strong,
+  Link = filters.link,
+  RawInline = filters.rawInline
 }
 
 util.blockToRaw = {
-  Emph = emphFilter,
-  Strong = strongFilter,
-  RawInline = rawInlineFilter,
-  LineBlock = lineBlockFilter
+  Emph = filters.emph,
+  Strong = filters.strong,
+  Link = filters.link,
+  RawInline = filters.rawInline,
+  RawBlock = filters.rawBlock,
+  LineBlock = filters.lineBlock
 }

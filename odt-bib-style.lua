@@ -3,8 +3,8 @@
 -- because Pandoc's ODT writer doesn't properly set this style.
 --
 -- Currently, all paragraphs in bibliography are turned into raw blocks with
--- correct style. Because of this, only italics and bold markups are keep; all
--- other markup is lost.
+-- correct style. Because of this, only italics, bold and link markups are keep;
+-- all other markup is lost.
 --
 -- dependencies:
 --   - util.lua, need to be in "filters/" relative to the directory
