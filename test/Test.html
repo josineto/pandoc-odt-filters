@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="José de Mattos Neto" />
+  <title>Testing pandoc-odt-filters</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Testing pandoc-odt-filters</h1>
+<p class="author">José de Mattos Neto</p>
+<p class="date">07-03-2018</p>
+</header>
+<h1 id="sec:abstract" class="unnumbered">Testing <code>abstract.lua</code></h1>
+<div id="abstractDiv" class=".abstract">
+<p>If this abstract appears as first section in document, with style configured in filter (<code>abstractODTStyle</code> variable), test passes.</p>
+</div>
+<h1 id="sec:testing-odt-captions.lua-2-tests">Testing <code>odt-captions.lua</code> (2 tests)</h1>
+<p>If image and table captions below get correct LibreOffice sequence field, 1st and 2nd tests pass.</p>
+<figure>
+<img src="img/Detaching_drop.jpg" alt="Figure 1: Image by Roger McLassus - Own work, CC BY-SA 3.0, link" id="fig:public" style="width:80.0%" /><figcaption>Figure 1: Image by Roger McLassus - Own work, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=526228">link</a></figcaption>
+</figure>
+<div id="tbl:dummy">
+<table>
+<caption>Table 1: Dummy table</caption>
+<thead>
+<tr class="header">
+<th>Column 1</th>
+<th>Column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>value 1</td>
+<td>value 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:testing-odt-lists.lua-2-tests">Testing <code>odt-lists.lua</code> (2 tests)</h1>
+<p>If unordered list gets list style configured in filter (<code>listStyle</code> variable), and items get paragraph style (<code>listParaStyle</code> variable), 1st test passes.</p>
+<ul>
+<li>banana</li>
+<li>apple</li>
+<li>orange</li>
+</ul>
+<p>Ordered list style must be of <code>numListStyle</code> variable, and item paragraph style must be of <code>numListParaStyle</code> variable, then 2nd test passes.</p>
+<ol type="1">
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+</ol>
+<h1 id="sec:testing-odt-anchors.lua-3-tests">Testing <code>odt-anchors.lua</code> (3 tests)</h1>
+<p>If all following links work, 3 tests pass (note that image and table links point to caption).</p>
+<p>Section link, goes to <a href="#sec:testing-odt-bib-style.lua">sec. 4</a> . Image link, goes to <a href="#fig:public">fig. 1</a>. Table link, goes to <a href="#tbl:dummy">tbl. 1</a>.</p>
+<h1 id="sec:testing-odt-custom-styles.lua-3-tests" class="unnumbered">Testing <code>odt-custom-styles.lua</code> (3 tests)</h1>
+<p>If above heading gets style configured in filter (<code>unnumberedStyle</code> variable), 1st test passes.</p>
+<p>If following text gets <code>Source_Text</code> character style, 2nd test passes. <span data-custom-style="Source_Text">This phrase should be in Source_Text style, with <strong>bold here</strong> and <em>italics here</em></span>.</p>
+<p>If following text gets <code>Date</code> paragraph style, 3rd test passes.</p>
+<div data-custom-style="Date">
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.</p>
+</div>
+<h1 id="sec:testing-odt-bib-style.lua">Testing <code>odt-bib-style.lua</code></h1>
+<p>A citation here <span class="citation" data-cites="DoeDummybook2018">(Doe 2018)</span>. If following bibliography gets style configured in filter (<code>bibliographyStyle</code> variable), test passes.</p>
+<div id="refs" class="references">
+<div id="ref-DoeDummybook2018">
+<p>Doe, Joe. 2018. <em>Dummy Book</em>. Doe city: Joe editions.</p>
+</div>
+</div>
+</body>
+</html>
