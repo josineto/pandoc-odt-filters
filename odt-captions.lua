@@ -20,15 +20,15 @@
 -- 1 (or whatever number)
 -- </text:sequence>
 --
--- dependencies: util.lua, need to be in "filters/" relative to the directory
---               where pandoc is run
+-- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
 -- date: february 2018
 -- license: GPL version 3 or later
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 local function correctCaption(caption, id, sequenceName)
   local newCaption = {}

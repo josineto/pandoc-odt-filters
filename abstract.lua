@@ -26,8 +26,10 @@
 -- Your *abstract* here, with **markup** allowed^[in ODT, only italics, bold and
 -- line-block are supported]. Put '\' to wrap lines.
 --
--- dependencies: odt-custom-styles.lua, IF using with ODT writer. That filter
---     MUST be run AFTER this filter, to make abstract custom-style work.
+-- dependencies:
+--   - util.lua, need to be in the same directory of this filter
+--   - odt-custom-styles.lua, IF using with ODT writer. That filte MUST be run
+--     AFTER this filter, to make abstract custom-style work.
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
@@ -36,7 +38,8 @@
 
 local abstractODTStyle = 'Resumo'
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 local function getAbstractAttr()
   local attributes = {}

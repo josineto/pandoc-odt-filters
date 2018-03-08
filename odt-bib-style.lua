@@ -7,8 +7,7 @@
 -- all other markup is lost.
 --
 -- dependencies:
---   - util.lua, need to be in "filters/" relative to the directory
---     where pandoc is run
+--   - util.lua, need to be in the same directory of this filter
 --   - odt-custom-styles.lua, need to be used, and used AFTER this filter
 -- author:
 --   - name: José de Mattos Neto
@@ -18,7 +17,8 @@
 
 local bibliographyStyle = 'Bibliography_20_1'
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.classes[1] then

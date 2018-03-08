@@ -11,8 +11,7 @@
 -- Currently, just italics, bold, links and line blocks are preserved in divs,
 -- and italics, bold and links in spans; all other markup is ignored.
 --
--- dependencies: util.lua, need to be in "filters/" relative to the directory
---               where pandoc is run
+-- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
@@ -21,7 +20,8 @@
 
 local unnumberedStyle = 'Título_20_textual'
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.attributes then

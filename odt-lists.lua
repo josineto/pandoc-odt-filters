@@ -15,8 +15,7 @@
 -- Currently, just italics, bold, links and line blocks are preserved in lists;
 -- all other markup is ignored.
 --
--- dependencies: util.lua, need to be in "filters/" relative to the directory
---               where pandoc is run
+-- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
@@ -28,7 +27,8 @@ local numListStyle = 'Numbering_20_1'
 local listParaStyle = 'List_20_1'
 local numListParaStyle = 'Numbering_20_1'
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 local tags = {}
 tags.listStart = '<text:list text:style-name=\"' .. listStyle .. '\">'

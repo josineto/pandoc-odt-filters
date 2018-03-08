@@ -14,8 +14,7 @@
 -- TEXT TO BE TRUE SMALLCAPS
 -- </text:span>
 --
--- dependencies: util.lua, need to be in "filters/" relative to the directory
---               where pandoc is run
+-- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
@@ -24,7 +23,8 @@
 
 local smallcapsStyle = 'Versalete'
 
-require 'filters/util'
+local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
+require ((utilPath or '') .. 'util')
 
 function SmallCaps (sc)
   if FORMAT == 'odt' then
