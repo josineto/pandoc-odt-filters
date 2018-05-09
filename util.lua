@@ -49,6 +49,16 @@ util.isTableDiv = function (div)
   return tableDiv
 end
 
+local escapes = {}
+escapes["<"] = "&lt;"
+escapes[">"] = "&gt;"
+util.escape = function (text)
+  for k, v in pairs(escapes) do
+    text = string.gsub(text, k, v)
+  end
+  return text
+end
+
 local tags = {}
 tags.emph = '<text:span text:style-name=\"Emphasis\">'
 tags.strong = '<text:span text:style-name=\"Strong_20_Emphasis\">'
@@ -57,19 +67,24 @@ tags.linkEnd = '</text:a>'
 tags.lineBreak = '<text:line-break />'
 
 local filters = {}
+filters.str = function(str)
+  local content = util.escape(pandoc.utils.stringify(str))
+  return pandoc.Str(content)
+end
+
 filters.emph = function(emph)
-  local content = tags.emph .. pandoc.utils.stringify(emph) .. tags.spanEnd
+  local content = tags.emph .. util.escape(pandoc.utils.stringify(emph)) .. tags.spanEnd
   return pandoc.Str(content)
 end
 
 filters.strong = function(strong)
-  local content = tags.strong .. pandoc.utils.stringify(strong) .. tags.spanEnd
+  local content = tags.strong .. util.escape(pandoc.utils.stringify(strong)) .. tags.spanEnd
   return pandoc.Str(content)
 end
 
 filters.link = function(link)
   local linkTag = '<text:a xlink:type=\"simple\" xlink:href=\"' .. link.target .. '\" office:name=\"\">'
-  local content = linkTag .. pandoc.utils.stringify(link) .. tags.linkEnd
+  local content = linkTag .. util.escape(pandoc.utils.stringify(link)) .. tags.linkEnd
   return pandoc.Str(content)
 end
 
@@ -94,6 +109,7 @@ end
 util.inlineToRaw = {
   Emph = filters.emph,
   Strong = filters.strong,
+  Str = filters.str,
   Link = filters.link,
   RawInline = filters.rawInline
 }
@@ -101,6 +117,7 @@ util.inlineToRaw = {
 util.blockToRaw = {
   Emph = filters.emph,
   Strong = filters.strong,
+  Str = filters.str,
   Link = filters.link,
   RawInline = filters.rawInline,
   RawBlock = filters.rawBlock,
