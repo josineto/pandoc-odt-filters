@@ -49,12 +49,15 @@ util.isTableDiv = function (div)
   return tableDiv
 end
 
+-- Required escapes.
+-- Ampersand ('&') MUST be the first element added to table `escapes`.
 local escapes = {}
+escapes["&"] = "&amp;"
 escapes["<"] = "&lt;"
 escapes[">"] = "&gt;"
 util.escape = function (text)
-  for k, v in pairs(escapes) do
-    text = string.gsub(text, k, v)
+  for fromChar, toChar in pairs(escapes) do
+    text = string.gsub(text, fromChar, toChar)
   end
   return text
 end

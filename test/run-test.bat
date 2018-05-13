@@ -9,7 +9,8 @@ cd..
 echo Generating %odt%
 
 pandoc -s %file% ^
-  -M bibliography=test/bibliography.bib ^
+  -M bibliography=test/bibliography.yaml ^
+  -M csl=test/abnt.csl ^
   -M numberSections=true ^
   -M autoSectionLabels=true ^
   -M linkReferences=true ^
@@ -31,7 +32,8 @@ pandoc -s %file% ^
 echo Generating %html%
 
 pandoc -s %file% ^
-  -M bibliography=test/bibliography.bib ^
+  -M bibliography=test/bibliography.yaml ^
+  -M csl=test/abnt.csl ^
   -M numberSections=true ^
   -M autoSectionLabels=true ^
   -M linkReferences=true ^

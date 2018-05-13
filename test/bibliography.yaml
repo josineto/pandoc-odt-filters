@@ -1,0 +1,19 @@
+---
+references:
+- id: DoeDummybook2018
+  type: book
+  title: Dummy Book
+  publisher: Joe & Doe editions
+  edition: '2'
+  URL: 'https://pandoc.org/'
+  accessed:
+    - year: 2018
+      month: 5
+      day: 12
+  author:
+    - family: Doe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+...
