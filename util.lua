@@ -25,14 +25,12 @@ util.getElementId = function (element, fallbackId)
 end
 
 local imageCounter = 0
-
 util.getImageId = function (image)
   imageCounter = imageCounter + 1
   return util.getElementId(image, 'img' .. imageCounter)
 end
 
 local tableCounter = 0
-
 util.getTableId = function (table)
   tableCounter = tableCounter + 1
   return util.getElementId(table, 'tbl' .. tableCounter)
@@ -55,10 +53,11 @@ local escapes = {}
 escapes["&"] = "&amp;"
 escapes["<"] = "&lt;"
 escapes[">"] = "&gt;"
+local escPattern = "([&<>])"
 util.escape = function (text)
-  for fromChar, toChar in pairs(escapes) do
-    text = string.gsub(text, fromChar, toChar)
-  end
+  text = string.gsub(text, escPattern, function(char)
+           return escapes[char]
+         end)
   return text
 end
 

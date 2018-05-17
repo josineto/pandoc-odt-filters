@@ -70,7 +70,7 @@ function Div (div)
     return pandoc.walk_block(div, {
       Table = function(el)
         if el.caption then
-          el.caption = correctCaption(el.caption, div.attr.identifier, sequenceNames.table)
+          el.caption = correctCaption(el.caption, id, sequenceNames.table)
         end
         return el
       end
