@@ -131,11 +131,16 @@
         <names variable="editor"/>
         <names variable="translator"/>
         <choose>
-          <!-- "IF" Evita duplicação de títulos em audiovisuais sem autor -->
-          <if match="none" type="motion_picture broadcast">
-            <text macro="title"/>
+          <if match="any" type="motion_picture broadcast">
+            <names variable="director">
+              <name name-as-sort-order="all" sort-separator=", " delimiter="; " delimiter-precedes-last="always">
+                <name-part name="family" text-case="uppercase"/>
+                <name-part name="given" text-case="capitalize-first"/>
+              </name>
+            </names>
           </if>
         </choose>
+        <text macro="title"/>
       </substitute>
     </names>
   </macro>
@@ -150,6 +155,7 @@
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
+        <names variable="director"/>
         <choose>
           <if type="book">
             <text variable="title" form="short"/>
@@ -173,7 +179,7 @@
   <!--A macro 'title' é responsável por mostrar o título principal do arquivo. Em todos os tipos ele aparecerá em negrito logo após os nomes dos autores, exceto em arquivos do tipo 'artigo de jornal, artigo de revista, artigo de periodico'; nesses arquivos eles irão aparecer em fonte normal.-->
   <macro name="title">
     <choose>
-      <if type="chapter bill webpage post-weblog article-newspaper article-magazine article-journal motion_picture broadcast paper-conference speech" match="any">
+      <if type="chapter bill webpage post-weblog article-newspaper article-magazine article-journal paper-conference speech" match="any">
         <text variable="title" text-case="sentence"/>
       </if>
       <else-if match="any" type="entry-encyclopedia entry-dictionary">
@@ -622,19 +628,15 @@
             <text macro="access"/>
           </group>
         </else-if>
-        <!-- Filmes e vídeos. Imperfeito. Só inclui diretor. Necessita mais trabalho. O campo "Extra" deve conter o local de produção -->
+        <!-- Filmes e vídeos. Imperfeito. Só inclui diretor. Necessita mais trabalho. -->
         <else-if type="motion_picture broadcast" match="any">
           <group delimiter=". " suffix=". ">
-            <text macro="title"/>
             <text macro="author"/>
+            <text macro="title"/>
             <!--Nomes de editores-->
             <text macro="container-contributors"/>
             <text macro="secondary-contributors"/>
-            <group>
-              <text macro="extra" suffix=": "/>
-              <text variable="publisher" suffix=", "/>
-              <text macro="issued"/>
-            </group>
+            <text macro="publisher"/>
             <text macro="collection-title" font-weight="bold"/>
             <text macro="event"/>
             <!-- Suporte -->
@@ -642,6 +644,7 @@
             <!-- Tipo, gênero -->
             <text macro="genre"/>
             <text macro="locators"/>
+            <text macro="extra"/>
             <text macro="access"/>
           </group>
         </else-if>

@@ -37,7 +37,7 @@ Ordered list style must be of `numListStyle` variable, and item paragraph style 
 
 If all following links work, 3 tests pass (note that image and table links point to caption).
 
-Section link, goes to @sec:testing-odt-bib-style.lua . Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
+Section link, goes to @sec:testing-citing-performance-and-odt-bib-style.lua-2-tests. Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
 
 # Testing `odt-custom-styles.lua` (3 tests) {-}
 
@@ -51,6 +51,8 @@ If following text gets `Date` paragraph style, 3rd test passes.
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.
 :::
 
-# Testing `odt-bib-style.lua`
+# Testing citing performance and `odt-bib-style.lua` (2 tests)
 
-A citation here [@DoeDummybook2018]. If following bibliography gets style configured in filter (`bibliographyStyle` variable), test passes.
+Twenty one citations here: [@BoeBoebook2018; @CoeCoepresentation2018; @DoeDoearticle2018; @FoeFoenewspaperarticle2018; @GoeGoeconferencepaper2018; @HoeHoeblogpost2018; @JoeJoefilm2018], also [@KoeKoedisc2018; @LoeLoevideorecording2018; @MoeMoemanuscript2018; @NoeNoemap2018; @PoePoesculpture2018; @QoeQoewebsite2018; @RoeRoereport2018] and also [@SoeSoesectionBoe2018; @SoeSoesoftware2018; @ToeToethesis2018; @VoeVoedictionaryentry2018; @WoeWoeencyclopediaentry2018; @YoeYoebook2018; @ZoeZoesonata2018]. If these citations and following bibliography appears in correct format (according to CSL-file used), 1st test passes.
+
+Additionally, if following bibliography gets style configured in filter (`bibliographyStyle` variable), 2nd test passes.

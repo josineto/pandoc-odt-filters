@@ -1,17 +1,288 @@
 ---
 references:
-- id: DoeDummybook2018
+- id: BoeBoebook2018
   type: book
-  title: Dummy Book
-  publisher: Joe & Doe editions
-  edition: '2'
-  URL: 'https://pandoc.org/'
+  title: Boe book
+  publisher: Doe & Joe editions
+  author:
+    - family: Boe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: KoeKoedisc2018
+  type: song
+  title: Koe disc
+  publisher: Doe & Joe records
+  medium: Compact Disc
+  note: 'Solo guitar: Joe Koe'
+  author:
+    - family: Koe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: DoeDoearticle2018
+  type: article-journal
+  title: Doe article
+  container-title: The journal of Doe
+  page: 1-99
+  volume: '3'
+  issue: '2'
+  author:
+    - family: Doe
+      given: Doe
+  issued:
+    - year: 2018
+
+- id: CoeCoepresentation2018
+  type: speech
+  title: Coe presentation
+  genre: Presentation
+  event: Coe first presentation
+  author:
+    - family: Coe
+      given: Joe
+  issued:
+    - year: 2018
+      month: 5
+      day: 1
+  event-place: Doe city
+
+- id: FoeFoenewspaperarticle2018
+  type: article-newspaper
+  title: Foe newspaper article
+  container-title: The Doe News
+  page: 1-50
+  edition: '3'
+  section: Awesome news
+  author:
+    - family: Foe
+      given: Joe
+  issued:
+    - year: 2018
+      month: 5
+      day: 2
+  publisher-place: Doe city
+
+- id: GoeGoeconferencepaper2018
+  type: paper-conference
+  title: Goe conference paper
+  container-title: Proceedings
+  publisher: Doe & Joe editions
+  page: 1-50
+  event: International Doe-Does meeting
+  author:
+    - family: Goe
+      given: Joe
+  issued:
+    - year: 2018
+      month: 5
+  publisher-place: Doe city
+
+- id: HoeHoeblogpost2018
+  type: post-weblog
+  title: Hoe blogpost
+  container-title: Doe-Hoe adventures
+  genre: Personal blog
+  URL: 'http://www.doehoeadventures.com'
+  author:
+    - family: Hoe
+      given: Joe
+  issued:
+    - year: 2018
+      month: 5
   accessed:
     - year: 2018
       month: 5
-      day: 12
+      day: 16
+
+- id: JoeJoefilm2018
+  type: motion_picture
+  title: Joe film
+  publisher: Doe & Joe films
+  genre: Drama
+  medium: Movie film
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+  director:
+    - family: Joe
+      given: Joe
+
+- id: LoeLoevideorecording2018
+  type: motion_picture
+  title: Loe video recording
+  publisher: Doe & Joe pictures
+  medium: Web video
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+  director:
+    - family: Loe
+      given: Joe
+
+- id: MoeMoemanuscript2018
+  type: manuscript
+  title: Moe manuscript
+  genre: Book sketch
+  source: 2nd catalog
+  archive: Doe library
+  archive_location: 1st room
+  call-number: 345 number
   author:
-    - family: Doe
+    - family: Moe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: NoeNoemap2018
+  type: map
+  title: Noe map
+  publisher: Doe & Joe editions
+  edition: '2'
+  genre: Naval map
+  scale: '1:500.000'
+  author:
+    - family: Noe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: PoePoesculpture2018
+  type: graphic
+  title: Poe sculpture
+  dimensions: 3x3
+  medium: Wood
+  archive: Doe library
+  author:
+    - family: Poe
+      given: Joe
+  issued:
+    - year: 2018
+
+- id: QoeQoewebsite2018
+  type: webpage
+  title: Qoe website
+  container-title: Qoe thoughts
+  genre: Working site
+  URL: 'http://www.qoewebsite.com'
+  author:
+    - family: Qoe
+      given: Joe
+  issued:
+    - year: 2018
+  accessed:
+    - year: 2018
+      month: 5
+      day: 16
+
+- id: RoeRoereport2018
+  type: report
+  title: Roe report
+  publisher: Doe & Joe editions
+  page: '123'
+  genre: Partial report
+  number: '3'
+  author:
+    - family: Roe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: SoeSoesectionBoe2018
+  type: chapter
+  title: Soe section of Boe book
+  container-title: Boe book
+  publisher: Doe & Joe editions
+  page: 50-99
+  author:
+    - family: Soe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: ToeToethesis2018
+  type: thesis
+  title: Toe thesis
+  publisher: Doe & Joe University
+  number-of-pages: '99'
+  genre: Master thesis
+  author:
+    - family: Toe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: VoeVoedictionaryentry2018
+  type: entry-dictionary
+  title: Voe dictionary entry
+  container-title: Doe to English dictionary
+  publisher: Doe & Joe editions
+  page: '99'
+  edition: '2'
+  author:
+    - family: Voe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: WoeWoeencyclopediaentry2018
+  type: entry-encyclopedia
+  title: Woe encyclopedia entry
+  container-title: World Woe Knowledge
+  publisher: Doe & Joe editions
+  page: '99'
+  edition: '3'
+  author:
+    - family: Woe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: YoeYoebook2018
+  type: book
+  title: Yoe book
+  publisher: Doe & Joe editions
+  edition: '2'
+  author:
+    - family: Yoe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: ZoeZoesonata2018
+  type: song
+  title: Zoe sonata
+  publisher: Doe & Joe editions
+  medium: Full score
+  note: For piano and live electronics
+  author:
+    - family: Zoe
+      given: Joe
+  issued:
+    - year: 2018
+  publisher-place: Doe city
+
+- id: SoeSoesoftware2018
+  type: book
+  title: Soe software
+  publisher: Doe & Joe Software Foundation
+  version: '0.1'
+  genre: Assembly
+  medium: Linux
+  author:
+    - family: Soe
       given: Joe
   issued:
     - year: 2018
