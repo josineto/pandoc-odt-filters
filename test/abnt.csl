@@ -459,6 +459,23 @@
       <text variable="archive_location" prefix=", "/>
     </group>
   </macro>
+  <!-- Data original de publicação, entre colchetes. Para criar o campo no Zotero, no campo "Extra" use o formato "original-date: yyyy-mm-dd" sem aspas. -->
+  <macro name="original-date">
+    <group prefix="[" suffix="]">
+      <choose>
+	    <if match="any" variable="original-date">
+	      <date variable="original-date">
+            <date-part name="day" suffix=" "/>
+            <date-part name="month" form="short" suffix=" "/>
+            <date-part name="year"/>
+          </date>
+	    </if>
+	    <else>
+	      <text macro="extra"/>
+	    </else>
+	  </choose>
+	</group>
+  </macro>
   <!-- Número de páginas na citação -->
   <macro name="citation-locator">
     <group>
@@ -503,11 +520,10 @@
             <text macro="locators"/>
           </group>
         </if>
-        <!--Capítulo de livro (colocar a data original do capitulo no campo "Extra")-->
+        <!--Capítulo de livro (Zotero: colocar a data original do capitulo no campo "Extra", no formato "original-date: yyyy-mm-dd", sem aspas)-->
         <else-if type="chapter">
           <text macro="author" suffix=". "/>
-          <!--Campo 'extra': data original do capitulo entre colchetes-->
-          <text macro="extra" prefix="[" suffix="] "/>
+          <text macro="original-date" suffix=" "/>
           <group delimiter=". " suffix=". ">
             <text macro="title"/>
             <text macro="container"/>

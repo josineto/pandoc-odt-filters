@@ -46,7 +46,7 @@ local function getAbstractAttr()
   if FORMAT == 'odt' then
     attributes['custom-style'] = abstractODTStyle
   end
-  return pandoc.Attr('abstractDiv', {'.abstract'}, attributes)
+  return pandoc.Attr('abstractDiv', {'abstract'}, attributes)
 end
 
 local function getContents(metaElement)
@@ -68,12 +68,13 @@ end
 
 function Pandoc (doc)
   if FORMAT ~= 'docx' and doc.meta.abstract then
+
     table.insert(doc.blocks, 1, getAbstractDiv(doc.meta.abstract))
 
     if doc.meta['abstract-title'] then
       table.insert(doc.blocks, 1, getAbstractHeader(doc.meta['abstract-title']))
     end
-
+    
     return pandoc.Pandoc(doc.blocks, doc.meta)
   end
 end
