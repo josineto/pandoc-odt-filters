@@ -31,6 +31,6 @@ function SmallCaps (sc)
     local startTag = '<text:span text:style-name=\"' .. smallcapsStyle .. '\">'
     local endTag = '</text:span>'
     sc.content = util.putTagsOnContent(sc.content, startTag, endTag)
+    return pandoc.Span(sc.content)
   end
-  return pandoc.Span(sc.content)
 end
