@@ -33,11 +33,11 @@ Ordered list style must be of `numListStyle` variable, and item paragraph style 
 2. item 2
 3. item 3
 
-# Testing `odt-anchors.lua` (3 tests)
+# Testing `odt-anchors.lua` (2 tests)
 
-If all following links work, 3 tests pass (note that image and table links point to caption).
+If all following links work, 2 tests pass (note that image and table links point to caption).
 
-Section link, goes to @sec:testing-citing-performance-and-odt-bib-style.lua-2-tests. Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
+Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
 
 # Testing `odt-custom-styles.lua` (3 tests) {-}
 

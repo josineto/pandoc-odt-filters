@@ -3,10 +3,11 @@
 -- should come. This allows proper cross-referencing to these anchors with
 -- links along the text.
 --
--- Currently, only headers, figures and tables anchors are supported. In images
--- and tables, the anchor is inserted at the caption.
+-- Currently, only figures and tables anchors are supported, where the anchor
+-- is inserted at the caption. (As of Pandoc 2.2.2, header bookmarks are
+-- created properly)
 --
--- Example: in a header with text "Heading 1", this filter inserts
+-- Example: in a figure with caption "Figure 1", this filter inserts
 -- bookmark-start tag before the text, and bookmark-end tag after.
 --
 -- Syntax:
@@ -28,14 +29,6 @@ local function getBookmarkById(id)
   local bookmarkStart = '<text:bookmark-start text:name=\"' .. id .. '\"/>'
   local bookmarkEnd = '<text:bookmark-end text:name=\"' .. id .. '\"/>'
   return bookmarkStart, bookmarkEnd
-end
-
-function Header (hx)
-  if FORMAT == 'odt' and hx.attr.identifier then
-    local startTag, endTag = getBookmarkById(hx.attr.identifier)
-    hx.content = util.putTagsOnContent(hx.content, startTag, endTag)
-  end
-  return hx
 end
 
 function Image (img)
