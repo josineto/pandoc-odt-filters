@@ -43,12 +43,14 @@ Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
 
 If above heading gets style configured in filter (`unnumberedStyle` variable), 1st test passes.
 
-If following text gets `Source_Text` character style, 2nd test passes. [This phrase should be in Source_Text style, with **bold here** and *italics here*]{custom-style="Source_Text"}.
+Second test: [this phrase should be in "Source_Text" character style, with **bold here** and *italics here* and a [link to Pandoc](http://pandoc.org) here]{custom-style="Source_Text"}.
 
-If following text gets `Date` paragraph style, 3rd test passes.
+Third test following below:
 
 ::: {custom-style="Date"}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.
+This paragraph should be in "Date" paragraph style, with **bold text here** and *italics text here*.
+
+Again, this paragraph also should be in "Date" paragraph style, with a [link to Pandoc](http://pandoc.org) here.
 :::
 
 # Testing citing performance and `odt-bib-style.lua` (2 tests)

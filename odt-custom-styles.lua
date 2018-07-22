@@ -23,15 +23,31 @@ local unnumberedStyle = 'Título_20_textual'
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
 require ((utilPath or '') .. 'util')
 
+function getDivAttr(style)
+  local attributes = {}
+  if (FORMAT == 'odt' or FORMAT == 'docx') then
+    attributes['custom-style'] = style
+  end
+  return pandoc.Attr('', { style }, attributes)
+end
+
+function getParaWithTags(para, style)
+  local startTag = '<text:p text:style-name=\"' .. style .. '\">'
+  local endTag = '</text:p>'
+  local content = startTag .. pandoc.utils.stringify(para) .. endTag
+  return pandoc.RawBlock('opendocument',content)
+end
+
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.attributes then
     local customStyle = div.attr.attributes['custom-style']
     if customStyle then
+      local paraFilter = function(para)
+        return getParaWithTags(para, customStyle)
+      end
+      util.blockToRaw['Para'] = paraFilter
       div = pandoc.walk_block(div, util.blockToRaw)
-      local startTag = '<text:p text:style-name=\"' .. customStyle .. '\">'
-      local endTag = '</text:p>'
-      local content = startTag .. pandoc.utils.stringify(div) .. endTag
-      return pandoc.RawBlock('opendocument',content)
+      return div
     end
   end
 end
