@@ -69,8 +69,11 @@
 <p>Second test: <span data-custom-style="Source_Text">this phrase should be in “Source_Text” character style, with <strong>bold here</strong> and <em>italics here</em> and a <a href="http://pandoc.org">link to Pandoc</a> here</span>.</p>
 <p>Third test following below:</p>
 <div data-custom-style="Date">
-<p>This paragraph should be in “Date” paragraph style, with <strong>bold text here</strong> and <em>italics text here</em>.</p>
-<p>Again, this paragraph also should be in “Date” paragraph style, with a <a href="http://pandoc.org">link to Pandoc</a> here.</p>
+<p>This paragraph should be in “Date” paragraph style,<br />
+with a line break after comma and <strong>bold text here</strong> and <em>italics text here</em>.</p>
+<div class="line-block">And this paragraph (in fact, a line block) also should be in “Date” paragraph style,<br />
+with line breaks after each comma,<br />
+with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</div>
 </div>
 <h1 id="sec:testing-citing-performance-and-odt-bib-style.lua-2-tests">Testing citing performance and <code>odt-bib-style.lua</code> (2 tests)</h1>
 <p>Twenty one citations here: <span class="citation" data-cites="BoeBoebook2018 CoeCoepresentation2018 DoeDoearticle2018 FoeFoenewspaperarticle2018 GoeGoeconferencepaper2018 HoeHoeblogpost2018 JoeJoefilm2018">(<span class="smallcaps">boe</span>, 2018; <span class="smallcaps">coe</span>, 2018; <span class="smallcaps">doe</span>, 2018; <span class="smallcaps">foe</span>, 2018; <span class="smallcaps">goe</span>, 2018; <span class="smallcaps">hoe</span>, 2018; <span class="smallcaps">joe</span>, 2018)</span>, also <span class="citation" data-cites="KoeKoedisc2018 LoeLoevideorecording2018 MoeMoemanuscript2018 NoeNoemap2018 PoePoesculpture2018 QoeQoewebsite2018 RoeRoereport2018">(<span class="smallcaps">koe</span>, 2018; <span class="smallcaps">loe</span>, 2018; <span class="smallcaps">moe</span>, 2018; <span class="smallcaps">noe</span>, 2018; <span class="smallcaps">poe</span>, 2018; <span class="smallcaps">qoe</span>, 2018; <span class="smallcaps">roe</span>, 2018)</span> and also <span class="citation" data-cites="SoeSoesectionBoe2018 SoeSoesoftware2018 ToeToethesis2018 VoeVoedictionaryentry2018 WoeWoeencyclopediaentry2018 YoeYoebook2018 ZoeZoesonata2018">(<span class="smallcaps">soe</span>, 2018a; b; <span class="smallcaps">toe</span>, 2018; <span class="smallcaps">voe</span>, 2018; <span class="smallcaps">woe</span>, 2018; <span class="smallcaps">yoe</span>, 2018; <span class="smallcaps">zoe</span>, 2018)</span>. If these citations and following bibliography appears in correct format (according to CSL-file used), 1st test passes.</p>
@@ -140,5 +143,11 @@
 <p>ZOE, Joe. <strong>Zoe sonata</strong>. For piano and live electronics. Doe city: Doe &amp; Joe editions, 2018. Full score. </p>
 </div>
 </div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>if those three paragraphs get correct styles, 3rd test passes<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
 </body>
 </html>

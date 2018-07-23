@@ -8,8 +8,9 @@
 -- This filter will become useless when pandoc finally implement custom styles
 -- in ODT writer (see https://github.com/jgm/pandoc/issues/2106 on this).
 --
--- Currently, just italics, bold, links and line blocks are preserved in divs,
--- and italics, bold and links in spans; all other markup is ignored.
+-- Currently, italics, bold, links, line breaks and footnotes are preserved in
+-- spans, and all those in multiple paragraphs and line blocks are preserved
+-- in divs; all other markup is ignored.
 --
 -- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
@@ -23,6 +24,12 @@ local unnumberedStyle = 'Título_20_textual'
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
 require ((utilPath or '') .. 'util')
 
+function getParaTags(style)
+  local startTag = '<text:p text:style-name=\"' .. style .. '\">'
+  local endTag = '</text:p>'
+  return startTag, endTag
+end
+
 function getDivAttr(style)
   local attributes = {}
   if (FORMAT == 'odt' or FORMAT == 'docx') then
@@ -31,22 +38,41 @@ function getDivAttr(style)
   return pandoc.Attr('', { style }, attributes)
 end
 
-function getParaWithTags(para, style)
-  local startTag = '<text:p text:style-name=\"' .. style .. '\">'
-  local endTag = '</text:p>'
+function getParaStyled(para, style)
+  local startTag, endTag = getParaTags(style)
   local content = startTag .. pandoc.utils.stringify(para) .. endTag
-  return pandoc.RawBlock('opendocument',content)
+  return pandoc.RawBlock('opendocument', content)
+end
+
+function getLineBlockStyled(lineBlock, style)
+  local startTag, endTag = getParaTags(style)
+  local contentWithBreaks = {}
+  for _,el in pairs(lineBlock.content) do
+    table.insert(contentWithBreaks, el)
+    table.insert(contentWithBreaks, {pandoc.Str(util.tags.lineBreak)})
+  end
+  lineBlock.content = contentWithBreaks
+  local rawContent = startTag .. pandoc.utils.stringify(lineBlock) .. endTag
+  return pandoc.RawBlock('opendocument', rawContent)
+end
+
+function getFilter(style)
+  local paraFilter = function(para)
+    return getParaStyled(para, style)
+  end
+  local lineBlockFilter = function(lb)
+    return getLineBlockStyled(lb, style)
+  end
+  util.blockToRaw.Para = paraFilter
+  util.blockToRaw.LineBlock = lineBlockFilter
+  return util.blockToRaw
 end
 
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.attributes then
     local customStyle = div.attr.attributes['custom-style']
     if customStyle then
-      local paraFilter = function(para)
-        return getParaWithTags(para, customStyle)
-      end
-      util.blockToRaw['Para'] = paraFilter
-      div = pandoc.walk_block(div, util.blockToRaw)
+      div = pandoc.walk_block(div, getFilter(customStyle))
       return div
     end
   end

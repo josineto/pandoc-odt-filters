@@ -67,6 +67,10 @@ tags.strong = '<text:span text:style-name=\"Strong_20_Emphasis\">'
 tags.spanEnd = '</text:span>'
 tags.linkEnd = '</text:a>'
 tags.lineBreak = '<text:line-break />'
+tags.noteStart = '<text:note text:id=\"ftn0\" text:note-class=\"footnote\">' ..
+  '<text:note-citation>1</text:note-citation><text:note-body>' ..
+  '<text:p text:style-name=\"Footnote\">'
+tags.noteEnd = '</text:p></text:note-body></text:note>'
 
 local filters = {}
 filters.str = function(str)
@@ -90,6 +94,16 @@ filters.link = function(link)
   return pandoc.Str(content)
 end
 
+filters.lineBreak = function(line)
+  return pandoc.Str(tags.lineBreak)
+end
+
+filters.note = function(note)
+  local noteSpan = pandoc.Span(note.c)
+  local content = tags.noteStart .. util.escape(pandoc.utils.stringify(noteSpan)) .. tags.noteEnd
+  return pandoc.Str(content)
+end
+
 filters.rawInline = function(raw)
   return pandoc.Str(raw.text)
 end
@@ -98,21 +112,13 @@ filters.rawBlock = function(raw)
   return pandoc.Str(raw.text)
 end
 
-filters.lineBlock = function (lb)
-  local newContent = {}
-  for _,el in pairs(lb.content) do
-    table.insert(newContent, el)
-    table.insert(newContent, {pandoc.Str(tags.lineBreak)})
-  end
-  lb.content = newContent
-  return lb
-end
-
 util.inlineToRaw = {
   Emph = filters.emph,
   Strong = filters.strong,
   Str = filters.str,
   Link = filters.link,
+  LineBreak = filters.lineBreak,
+  Note = filters.note,
   RawInline = filters.rawInline
 }
 
@@ -121,7 +127,10 @@ util.blockToRaw = {
   Strong = filters.strong,
   Str = filters.str,
   Link = filters.link,
+  LineBreak = filters.lineBreak,
+  Note = filters.note,
   RawInline = filters.rawInline,
-  RawBlock = filters.rawBlock,
-  LineBlock = filters.lineBlock
+  RawBlock = filters.rawBlock
 }
+
+util.tags = tags

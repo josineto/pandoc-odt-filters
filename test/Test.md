@@ -48,9 +48,12 @@ Second test: [this phrase should be in "Source_Text" character style, with **bol
 Third test following below:
 
 ::: {custom-style="Date"}
-This paragraph should be in "Date" paragraph style, with **bold text here** and *italics text here*.
+This paragraph should be in "Date" paragraph style,\
+with a line break after comma and **bold text here** and *italics text here*.
 
-Again, this paragraph also should be in "Date" paragraph style, with a [link to Pandoc](http://pandoc.org) here.
+| And this paragraph (in fact, a line block) also should be in "Date" paragraph style,
+| with line breaks after each comma,
+| with a [link to Pandoc](http://pandoc.org) here and a footnote^[if those three paragraphs get correct styles, 3rd test passes].
 :::
 
 # Testing citing performance and `odt-bib-style.lua` (2 tests)
