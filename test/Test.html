@@ -67,7 +67,11 @@
 <h1 id="sec:testing-odt-custom-styles.lua-3-tests" class="unnumbered">Testing <code>odt-custom-styles.lua</code> (3 tests)</h1>
 <p>If above heading gets style configured in filter (<code>unnumberedStyle</code> variable), 1st test passes.</p>
 <p>Second test: <span data-custom-style="Source_Text">this phrase should be in “Source_Text” character style, with <strong>bold here</strong> and <em>italics here</em> and a <a href="http://pandoc.org">link to Pandoc</a> here</span>.</p>
-<p>Third test following below:</p>
+<p>Third test: below must be a bold red horizontal rule. If it appears as such, third test passes.</p>
+<div data-custom-style="Red_20_horizontal_20_rule">
+<hr />
+</div>
+<p>Fourth test following below:</p>
 <div data-custom-style="Date">
 <p>This paragraph should be in “Date” paragraph style,<br />
 with a line break after comma and <strong>bold text here</strong> and <em>italics text here</em>.</p>
@@ -146,7 +150,7 @@ with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>if those three paragraphs get correct styles, 3rd test passes<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>if those two paragraphs get correct styles, 4th test passes<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 </body>

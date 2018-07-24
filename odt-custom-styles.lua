@@ -8,9 +8,10 @@
 -- This filter will become useless when pandoc finally implement custom styles
 -- in ODT writer (see https://github.com/jgm/pandoc/issues/2106 on this).
 --
--- Currently, italics, bold, links, line breaks and footnotes are preserved in
--- spans, and all those in multiple paragraphs and line blocks are preserved
--- in divs; all other markup is ignored.
+-- Currently, the following elements are **ignored** by this filter:
+-- blockquotes, lists, tables and code blocks (for `div` styles), and citations,
+-- images, quotes, strikeouts, super and subscript, math and code inlines, and
+-- smallcaps (for `span` styles. For smallcaps, see `odt-smallcaps.lua`).
 --
 -- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
@@ -65,6 +66,7 @@ function getFilter(style)
   end
   util.blockToRaw.Para = paraFilter
   util.blockToRaw.LineBlock = lineBlockFilter
+  util.blockToRaw.HorizontalRule = paraFilter
   return util.blockToRaw
 end
 

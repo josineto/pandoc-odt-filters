@@ -45,7 +45,13 @@ If above heading gets style configured in filter (`unnumberedStyle` variable), 1
 
 Second test: [this phrase should be in "Source_Text" character style, with **bold here** and *italics here* and a [link to Pandoc](http://pandoc.org) here]{custom-style="Source_Text"}.
 
-Third test following below:
+Third test: below must be a bold red horizontal rule. If it appears as such, third test passes.
+
+::: {custom-style="Red_20_horizontal_20_rule"}
+* * *
+:::
+
+Fourth test following below:
 
 ::: {custom-style="Date"}
 This paragraph should be in "Date" paragraph style,\
@@ -53,7 +59,7 @@ with a line break after comma and **bold text here** and *italics text here*.
 
 | And this paragraph (in fact, a line block) also should be in "Date" paragraph style,
 | with line breaks after each comma,
-| with a [link to Pandoc](http://pandoc.org) here and a footnote^[if those three paragraphs get correct styles, 3rd test passes].
+| with a [link to Pandoc](http://pandoc.org) here and a footnote^[if those two paragraphs get correct styles, 4th test passes].
 :::
 
 # Testing citing performance and `odt-bib-style.lua` (2 tests)
