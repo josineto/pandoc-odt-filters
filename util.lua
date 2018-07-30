@@ -122,15 +122,7 @@ util.inlineToRaw = {
   RawInline = filters.rawInline
 }
 
-util.blockToRaw = {
-  Emph = filters.emph,
-  Strong = filters.strong,
-  Str = filters.str,
-  Link = filters.link,
-  LineBreak = filters.lineBreak,
-  Note = filters.note,
-  RawInline = filters.rawInline,
-  Div = filters.div
-}
+util.blockToRaw = util.inlineToRaw
+util.blockToRaw.Div = filters.div
 
 util.tags = tags

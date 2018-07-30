@@ -34,14 +34,6 @@ function getParaTags(style)
   return startTag, endTag
 end
 
-function getDivAttr(style)
-  local attributes = {}
-  if (FORMAT == 'odt' or FORMAT == 'docx') then
-    attributes['custom-style'] = style
-  end
-  return pandoc.Attr('', { style }, attributes)
-end
-
 function getParaStyled(para, style)
   local startTag, endTag = getParaTags(style)
   local content = startTag .. pandoc.utils.stringify(para) .. endTag
@@ -74,7 +66,6 @@ function getFilter(style)
   return util.blockToRaw
 end
 
-local temp = false
 function Div (div)
   if FORMAT == 'odt' and div.attr and (div.attr.attributes or div.attr.classes) then
     local customStyle = div.attr.attributes['custom-style']
