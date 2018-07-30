@@ -3,15 +3,17 @@
 -- divs and spans with custom style into ODT raw blocks/inlines, with the ODT code
 -- using the custom style. Also, headers with custom style (like the {-}, aka
 -- "unnumbered" class) are turned into ODT raw heading blocks with the
--- custom style.
+-- custom style. If variable useClassAsCustomStyle is true, and element
+-- (div/span/header) doesn't have a custom-style attribute, then first class is
+-- used as style.
 --
 -- This filter will become useless when pandoc finally implement custom styles
 -- in ODT writer (see https://github.com/jgm/pandoc/issues/2106 on this).
 --
 -- Currently, the following elements are **ignored** by this filter:
--- blockquotes, lists, tables and code blocks (for `div` styles), and citations,
--- images, quotes, strikeouts, super and subscript, math and code inlines, and
--- smallcaps (for `span` styles. For smallcaps, see `odt-smallcaps.lua`).
+-- blockquotes, lists (see odt-lists.lua), tables and code blocks (for div
+-- styles), and citations, smallcaps (see odt-smallcaps.lua), images, quotes,
+-- strikeouts, super and subscript, math and code inlines (for span styles).
 --
 -- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
@@ -20,6 +22,7 @@
 -- date: february 2018
 -- license: GPL version 3 or later
 
+local useClassAsCustomStyle = true
 local unnumberedStyle = 'Título_20_textual'
 
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
@@ -64,15 +67,20 @@ function getFilter(style)
   local lineBlockFilter = function(lb)
     return getLineBlockStyled(lb, style)
   end
-  util.blockToRaw.Para = paraFilter
   util.blockToRaw.LineBlock = lineBlockFilter
+  util.blockToRaw.Para = paraFilter
   util.blockToRaw.HorizontalRule = paraFilter
+  util.blockToRaw.Plain = paraFilter
   return util.blockToRaw
 end
 
+local temp = false
 function Div (div)
-  if FORMAT == 'odt' and div.attr and div.attr.attributes then
+  if FORMAT == 'odt' and div.attr and (div.attr.attributes or div.attr.classes) then
     local customStyle = div.attr.attributes['custom-style']
+    if not customStyle and useClassAsCustomStyle and div.attr.classes then
+      customStyle = div.attr.classes[1]
+    end
     if customStyle then
       div = pandoc.walk_block(div, getFilter(customStyle))
       return div

@@ -104,11 +104,11 @@ filters.note = function(note)
   return pandoc.Str(content)
 end
 
-filters.rawInline = function(raw)
-  return pandoc.Str(raw.text)
+filters.div = function(div)
+  return div.content
 end
 
-filters.rawBlock = function(raw)
+filters.rawInline = function(raw)
   return pandoc.Str(raw.text)
 end
 
@@ -130,7 +130,7 @@ util.blockToRaw = {
   LineBreak = filters.lineBreak,
   Note = filters.note,
   RawInline = filters.rawInline,
-  RawBlock = filters.rawBlock
+  Div = filters.div
 }
 
 util.tags = tags
