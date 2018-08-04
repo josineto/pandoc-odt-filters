@@ -67,7 +67,8 @@ function getFilter(style)
 end
 
 function Div (div)
-  if FORMAT == 'odt' and div.attr and (div.attr.attributes or div.attr.classes) then
+  if FORMAT == 'odt' and div.attr and
+      (div.attr.attributes['custom-style'] or div.attr.classes[1]) then
     local customStyle = div.attr.attributes['custom-style']
     if not customStyle and useClassAsCustomStyle and div.attr.classes then
       customStyle = div.attr.classes[1]
