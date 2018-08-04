@@ -100,7 +100,7 @@ end
 
 filters.note = function(note)
   local noteSpan = pandoc.Span(note.c)
-  local content = tags.noteStart .. util.escape(pandoc.utils.stringify(noteSpan)) .. tags.noteEnd
+  local content = tags.noteStart .. pandoc.utils.stringify(noteSpan) .. tags.noteEnd
   return pandoc.Str(content)
 end
 

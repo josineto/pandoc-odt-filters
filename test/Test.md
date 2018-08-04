@@ -59,7 +59,7 @@ with a line break after comma and **bold text here** and *italics text here*.
 
 | And this paragraph (in fact, a line block) also should be in "Date" paragraph style,
 | with line breaks after each comma,
-| with a [link to Pandoc](http://pandoc.org) here and a footnote^[if those two paragraphs get correct styles, 4th test passes].
+| with a [link to Pandoc](http://pandoc.org) here and a footnote^[if those two paragraphs get correct styles, and *italics* & **bold** here work, 4th test passes].
 :::
 
 # Testing citing performance and `odt-bib-style.lua` (2 tests)
