@@ -89,7 +89,7 @@ filters.strong = function(strong)
 end
 
 filters.link = function(link)
-  local linkTag = '<text:a xlink:type=\"simple\" xlink:href=\"' .. link.target .. '\" office:name=\"\">'
+  local linkTag = '<text:a xlink:type=\"simple\" xlink:href=\"' .. util.escape(link.target) .. '\" office:name=\"\">'
   local content = linkTag .. util.escape(pandoc.utils.stringify(link)) .. tags.linkEnd
   return pandoc.Str(content)
 end

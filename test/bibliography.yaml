@@ -87,7 +87,7 @@ references:
   title: Hoe blogpost
   container-title: Doe-Hoe adventures
   genre: Personal blog
-  URL: 'http://www.doehoeadventures.com'
+  URL: 'http://www.doehoeadventures.com/testampersand&works=true'
   author:
     - family: Hoe
       given: Joe
