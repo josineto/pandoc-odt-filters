@@ -37,6 +37,7 @@ end
 function getParaStyled(para, style)
   local startTag, endTag = getParaTags(style)
   local content = startTag .. pandoc.utils.stringify(para) .. endTag
+  content = string.gsub(content, "\t", "<text:tab/>")
   return pandoc.RawBlock('opendocument', content)
 end
 
