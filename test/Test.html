@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="José de Mattos Neto" />
   <title>Testing pandoc-odt-filters</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -22,14 +23,14 @@
 <p class="author">José de Mattos Neto</p>
 <p class="date">07-03-2018</p>
 </header>
-<h1 id="sec:abstract" class="unnumbered">Testing <code>abstract.lua</code></h1>
+<h1 class="unnumbered" id="sec:abstract">Testing <code>abstract.lua</code></h1>
 <div id="abstractDiv" class="abstract">
 <p>If this abstract appears as first section in document, with style configured in filter (<code>abstractODTStyle</code> variable), test passes.</p>
 </div>
 <h1 id="sec:testing-odt-captions.lua-2-tests">Testing <code>odt-captions.lua</code> (2 tests)</h1>
 <p>If image and table captions below get correct LibreOffice sequence field, 1st and 2nd tests pass.</p>
 <figure>
-<img src="img/Detaching_drop.jpg" alt="Figure 1: Image by Roger McLassus - Own work, CC BY-SA 3.0, link" id="fig:public" style="width:80.0%" /><figcaption>Figure 1: Image by Roger McLassus - Own work, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=526228">link</a></figcaption>
+<img src="img/Detaching_drop.jpg" id="fig:public" style="width:80.0%" alt="" /><figcaption>Figure 1: Image by Roger McLassus - Own work, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=526228">link</a></figcaption>
 </figure>
 <div id="tbl:dummy">
 <table>
@@ -64,7 +65,7 @@
 <h1 id="sec:testing-odt-anchors.lua-2-tests">Testing <code>odt-anchors.lua</code> (2 tests)</h1>
 <p>If all following links work, 2 tests pass (note that image and table links point to caption).</p>
 <p>Image link, goes to <a href="#fig:public">fig. 1</a>. Table link, goes to <a href="#tbl:dummy">tbl. 1</a>.</p>
-<h1 id="sec:testing-odt-custom-styles.lua-3-tests" class="unnumbered">Testing <code>odt-custom-styles.lua</code> (3 tests)</h1>
+<h1 class="unnumbered" id="sec:testing-odt-custom-styles.lua-3-tests">Testing <code>odt-custom-styles.lua</code> (3 tests)</h1>
 <p>If above heading gets style configured in filter (<code>unnumberedStyle</code> variable), 1st test passes.</p>
 <p>Second test: <span data-custom-style="Source_Text">this phrase should be in “Source_Text” character style, with <strong>bold here</strong> and <em>italics here</em> and a <a href="http://pandoc.org">link to Pandoc</a> here</span>.</p>
 <p>Third test: below must be a bold red horizontal rule. If it appears as such, third test passes.</p>
@@ -77,12 +78,12 @@
 with a line break after comma and <strong>bold text here</strong> and <em>italics text here</em>.</p>
 <div class="line-block">And this paragraph (in fact, a line block) also should be in “Date” paragraph style,<br />
 with line breaks after each comma,<br />
-with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</div>
+with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</div>
 </div>
 <h1 id="sec:testing-citing-performance-and-odt-bib-style.lua-2-tests">Testing citing performance and <code>odt-bib-style.lua</code> (2 tests)</h1>
 <p>Twenty one citations here: <span class="citation" data-cites="BoeBoebook2018 CoeCoepresentation2018 DoeDoearticle2018 FoeFoenewspaperarticle2018 GoeGoeconferencepaper2018 HoeHoeblogpost2018 JoeJoefilm2018">(<span class="smallcaps">boe</span>, 2018; <span class="smallcaps">coe</span>, 2018; <span class="smallcaps">doe</span>, 2018; <span class="smallcaps">foe</span>, 2018; <span class="smallcaps">goe</span>, 2018; <span class="smallcaps">hoe</span>, 2018; <span class="smallcaps">joe</span>, 2018)</span>, also <span class="citation" data-cites="KoeKoedisc2018 LoeLoevideorecording2018 MoeMoemanuscript2018 NoeNoemap2018 PoePoesculpture2018 QoeQoewebsite2018 RoeRoereport2018">(<span class="smallcaps">koe</span>, 2018; <span class="smallcaps">loe</span>, 2018; <span class="smallcaps">moe</span>, 2018; <span class="smallcaps">noe</span>, 2018; <span class="smallcaps">poe</span>, 2018; <span class="smallcaps">qoe</span>, 2018; <span class="smallcaps">roe</span>, 2018)</span> and also <span class="citation" data-cites="SoeSoesectionBoe2018 SoeSoesoftware2018 ToeToethesis2018 VoeVoedictionaryentry2018 WoeWoeencyclopediaentry2018 YoeYoebook2018 ZoeZoesonata2018">(<span class="smallcaps">soe</span>, 2018a; b; <span class="smallcaps">toe</span>, 2018; <span class="smallcaps">voe</span>, 2018; <span class="smallcaps">woe</span>, 2018; <span class="smallcaps">yoe</span>, 2018; <span class="smallcaps">zoe</span>, 2018)</span>. If these citations and following bibliography appears in correct format (according to CSL-file used), 1st test passes.</p>
 <p>Additionally, if following bibliography gets style configured in filter (<code>bibliographyStyle</code> variable), 2nd test passes.</p>
-<div id="refs" class="references">
+<div id="refs" class="references" role="doc-bibliography">
 <div id="ref-BoeBoebook2018">
 <p>BOE, Joe. <strong>Boe book</strong>. Doe city: Doe &amp; Joe editions, 2018. </p>
 </div>
@@ -147,10 +148,10 @@ with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href
 <p>ZOE, Joe. <strong>Zoe sonata</strong>. For piano and live electronics. Doe city: Doe &amp; Joe editions, 2018. Full score. </p>
 </div>
 </div>
-<section class="footnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>if those two paragraphs get correct styles, and <em>italics</em> &amp; <strong>bold</strong> here work, 4th test passes<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>if those two paragraphs get correct styles, and <em>italics</em> &amp; <strong>bold</strong> here work, 4th test passes<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

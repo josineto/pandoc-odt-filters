@@ -99,7 +99,8 @@ filters.lineBreak = function(line)
 end
 
 filters.note = function(note)
-  local noteSpan = pandoc.Span(note.c)
+  local noteSpan = pandoc.Span(' ')
+  noteSpan.c = note.c
   local content = tags.noteStart .. pandoc.utils.stringify(noteSpan) .. tags.noteEnd
   return pandoc.Str(content)
 end
