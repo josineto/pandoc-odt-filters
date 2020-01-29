@@ -25,6 +25,7 @@ pandoc -s $file \
   --lua-filter odt-custom-styles.lua \
   --resource-path=test \
   --reference-doc=test/custom-reference-doc.odt \
+  -p \
   -o $odt \
   -f markdown+smart \
   -t odt
@@ -48,6 +49,7 @@ pandoc -s $file \
   --lua-filter odt-smallcaps.lua \
   --lua-filter odt-custom-styles.lua \
   --resource-path=test \
+  -p \
   -o $html \
   -f markdown+smart \
   -t html5

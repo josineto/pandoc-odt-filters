@@ -67,7 +67,7 @@
 <p>Image link, goes to <a href="#fig:public">fig. 1</a>. Table link, goes to <a href="#tbl:dummy">tbl. 1</a>.</p>
 <h1 class="unnumbered" id="sec:testing-odt-custom-styles.lua-3-tests">Testing <code>odt-custom-styles.lua</code> (3 tests)</h1>
 <p>If above heading gets style configured in filter (<code>unnumberedStyle</code> variable), 1st test passes.</p>
-<p>Second test: <span data-custom-style="Source_Text">this phrase should be in “Source_Text” character style, with <strong>bold here</strong> and <em>italics here</em> and a <a href="http://pandoc.org">link to Pandoc</a> here</span>.</p>
+<p>Second test: <span data-custom-style="Source_Text">this phrase should be in “Source_Text” character style, with <strong>bold here</strong>, <em>italics here</em>, <code>a tab	here</code> (before “here” word) and a <a href="http://pandoc.org">link to Pandoc</a> here]{custom</span>.</p>
 <p>Third test: below must be a bold red horizontal rule. If it appears as such, third test passes.</p>
 <div data-custom-style="Red_20_horizontal_20_rule">
 <hr />
@@ -75,7 +75,7 @@
 <p>Fourth test following below:</p>
 <div data-custom-style="Date">
 <p>This paragraph should be in “Date” paragraph style,<br />
-with a line break after comma and <strong>bold text here</strong> and <em>italics text here</em>.</p>
+with a line break after comma and <strong>bold text here</strong>, <em>italics text here</em> and <code>a tab	here</code> (before “here” word).</p>
 <div class="line-block">And this paragraph (in fact, a line block) also should be in “Date” paragraph style,<br />
 with line breaks after each comma,<br />
 with a <a href="http://pandoc.org">link to Pandoc</a> here and a footnote<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</div>

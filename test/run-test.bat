@@ -26,8 +26,10 @@ pandoc -s %file% ^
   --lua-filter odt-custom-styles.lua ^
   --resource-path=test ^
   --reference-doc=test/custom-reference-doc.odt ^
+  -p ^
   -o %odt% ^
-  -t odt+smart
+  -f markdown+smart ^
+  -t odt
 
 echo Generating %html%
 
@@ -48,7 +50,9 @@ pandoc -s %file% ^
   --lua-filter odt-smallcaps.lua ^
   --lua-filter odt-custom-styles.lua ^
   --resource-path=test ^
+  -p ^
   -o %html% ^
+  -f markdown+smart ^
   -t html5+smart
 
 echo Open %odt% and %html%. Just %odt% should be affected by odt- like filters.

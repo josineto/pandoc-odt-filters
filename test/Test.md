@@ -43,7 +43,7 @@ Image link, goes to @fig:public. Table link, goes to @tbl:dummy.
 
 If above heading gets style configured in filter (`unnumberedStyle` variable), 1st test passes.
 
-Second test: [this phrase should be in "Source_Text" character style, with **bold here** and *italics here* and a [link to Pandoc](http://pandoc.org) here]{custom-style="Source_Text"}.
+Second test: [this phrase should be in "Source_Text" character style, with **bold here**, *italics here*, `a tab	here` (before "here" word) and a [link to Pandoc](http://pandoc.org) here]{custom-style="Source_Text"}.
 
 Third test: below must be a bold red horizontal rule. If it appears as such, third test passes.
 
@@ -55,7 +55,7 @@ Fourth test following below:
 
 ::: {custom-style="Date"}
 This paragraph should be in "Date" paragraph style,\
-with a line break after comma and **bold text here** and *italics text here*.
+with a line break after comma and **bold text here**, *italics text here* and `a tab	here` (before "here" word).
 
 | And this paragraph (in fact, a line block) also should be in "Date" paragraph style,
 | with line breaks after each comma,

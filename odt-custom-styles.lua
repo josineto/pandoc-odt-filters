@@ -89,6 +89,7 @@ function Span (sp)
       local startTag = '<text:span text:style-name=\"' .. customStyle .. '\">'
       local endTag = '</text:span>'
       local content = startTag .. pandoc.utils.stringify(sp) .. endTag
+      content = string.gsub(content, "\t", "<text:tab/>")
       return pandoc.RawInline('opendocument', content)
     end
   end
@@ -104,6 +105,7 @@ function Header (hx)
     local startTag = '<text:h text:style-name=\"' .. class .. '\" text:outline-level=\"' .. hx.level .. '\">'
     local endTag = '</text:h>'
     local content = startTag .. pandoc.utils.stringify(hx) .. endTag
+    content = string.gsub(content, "\t", "<text:tab/>")
     return pandoc.RawBlock('opendocument',content)
   end
 end
