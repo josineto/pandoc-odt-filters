@@ -8,7 +8,7 @@ None of these filters are guaranteed to work, as I wrote them only to address Pa
 
 ## Requirements
 
-- [Pandoc](https://github.com/jgm/pandoc), min. version: 2.8, (for now I've tested only until 2.8)
+- [Pandoc](https://github.com/jgm/pandoc), min. version: 2.8
 - `util.lua` in the same directory of each filter (see below)
 
 ## Installation
