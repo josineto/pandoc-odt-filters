@@ -20,7 +20,7 @@
 -- in their beginnings.
 --
 -- Example: in Markdown file:
--- 
+--
 -- | `c` Head A     |   Head B    | `l` Head C     |
 -- | -------------- |:-----------:| -------------- |
 -- | `sc` Cell A1-2 |   Cell B1   | `l` Cell C1    |
@@ -34,7 +34,7 @@
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
--- date: january 2019
+-- date: january 2019 (first version)
 -- license: GPL version 3 or later
 
 local conversions = {}
@@ -46,22 +46,24 @@ conversions.l = '[align=right]' -- ConTeXt align is inverted
 conversions.r = '[align=left]'  -- ConTeXt align is inverted
 
 function Table (tbl)
-  local hasSpans = false
-  tbl = pandoc.walk_block(tbl, {
-    Code = function (code)
-      local raw = conversions[code.text]
-      if raw then
-        hasSpans = true
-        return pandoc.RawInline('context', raw)
+  if FORMAT == 'context' then
+    local hasSpans = false
+    tbl = pandoc.walk_block(tbl, {
+      Code = function (code)
+        local raw = conversions[code.text]
+        if raw then
+          hasSpans = true
+          return pandoc.RawInline('context', raw)
+        end
+      end
+    })
+    if (hasSpans) then
+      local size = #tbl.widths
+      tbl.widths = {}
+      for i=1, size do
+        table.insert(tbl.widths, 0.0)
       end
     end
-  })
-  if (hasSpans) then
-    local size = #tbl.widths
-    tbl.widths = {}
-    for i=1, size do
-      table.insert(tbl.widths, 0.0)
-    end
+    return tbl
   end
-  return tbl
 end

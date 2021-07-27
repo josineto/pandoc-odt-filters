@@ -19,7 +19,7 @@
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
--- date: february 2018
+-- date: february 2018 (first version)
 -- license: GPL version 3 or later
 
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')

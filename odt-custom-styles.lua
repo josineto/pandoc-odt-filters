@@ -1,25 +1,24 @@
 --
+-- Only use this filter if you need custom-styles in spans or headers; but
+-- consider caveats below.
+--
 -- Workaround to use custom styles when converting to ODT. This filter turns
--- divs and spans with custom style into ODT raw blocks/inlines, with the ODT code
--- using the custom style. Also, headers with custom style (like the {-}, aka
--- "unnumbered" class) are turned into ODT raw heading blocks with the
--- custom style. If variable useClassAsCustomStyle is true, and element
--- (div/span/header) doesn't have a custom-style attribute, then first class is
+-- spans and headers with custom style into ODT raw blocks/inlines, with the ODT code
+-- using the custom style. If variable useClassAsCustomStyle is true, and element
+-- (span/header but also div) doesn't have a custom-style attribute, then first class is
 -- used as style.
 --
--- This filter will become useless when pandoc finally implement custom styles
--- in ODT writer (see https://github.com/jgm/pandoc/issues/2106 on this).
---
--- Currently, the following elements are **ignored** by this filter:
+-- CAVEATS: currently, the following elements are **ignored** by this filter:
 -- blockquotes, lists (see odt-lists.lua), tables and code blocks (for div
 -- styles), and citations, smallcaps (see odt-smallcaps.lua), images, quotes,
 -- strikeouts, super and subscript, math and code inlines (for span styles).
 --
+-- pandoc's minimum version: 2.10
 -- dependencies: util.lua, need to be in the same directory of this filter
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
--- date: february 2018
+-- date: february 2018 (first version)
 -- license: GPL version 3 or later
 
 local useClassAsCustomStyle = true
@@ -68,6 +67,7 @@ function getFilter(style)
 end
 
 function Div (div)
+  PANDOC_VERSION:must_be_at_least '2.12'
   if FORMAT == 'odt' and div.attr and
       (div.attr.attributes['custom-style'] or div.attr.classes[1]) then
     local customStyle = div.attr.attributes['custom-style']
