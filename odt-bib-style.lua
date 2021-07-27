@@ -17,8 +17,9 @@
 
 local bibliographyStyle = 'Bibliography_20_1'
 
-local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
-require ((utilPath or '') .. 'util')
+local path = require 'pandoc.path'
+utilPath = path.directory(PANDOC_SCRIPT_FILE)
+dofile(path.join{utilPath, 'util.lua'})
 
 function Div (div)
   if FORMAT == 'odt' and div.attr and div.attr.classes[1] then

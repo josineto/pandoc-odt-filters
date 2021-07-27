@@ -24,8 +24,9 @@
 local useClassAsCustomStyle = true
 local unnumberedStyle = 'Título_20_textual'
 
-local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
-require ((utilPath or '') .. 'util')
+local path = require 'pandoc.path'
+utilPath = path.directory(PANDOC_SCRIPT_FILE)
+dofile(path.join{utilPath, 'util.lua'})
 
 function getParaTags(style)
   local startTag = '<text:p text:style-name=\"' .. style .. '\">'

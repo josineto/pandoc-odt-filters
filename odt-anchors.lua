@@ -22,8 +22,9 @@
 -- date: february 2018 (first version)
 -- license: GPL version 3 or later
 
-local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
-require ((utilPath or '') .. 'util')
+local path = require 'pandoc.path'
+utilPath = path.directory(PANDOC_SCRIPT_FILE)
+dofile(path.join{utilPath, 'util.lua'})
 
 local function getBookmarkById(id)
   local bookmarkStart = '<text:bookmark-start text:name=\"' .. id .. '\"/>'

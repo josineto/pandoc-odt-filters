@@ -23,8 +23,9 @@
 
 local smallcapsStyle = 'Versalete'
 
-local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
-require ((utilPath or '') .. 'util')
+local path = require 'pandoc.path'
+utilPath = path.directory(PANDOC_SCRIPT_FILE)
+dofile(path.join{utilPath, 'util.lua'})
 
 function SmallCaps (sc)
   if FORMAT == 'odt' then

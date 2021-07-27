@@ -4,7 +4,7 @@ author: José de Mattos Neto
 date: 07-03-2018
 abstract-title: Testing `abstract.lua`
 abstract:
-    If this abstract appears as first section in document, with style configured in filter (`abstractODTStyle` variable), test passes.
+    If this abstract appears as first section in document, with **no** title in ODT but a title in HTML, test passes.
 ---
 
 # Testing `odt-captions.lua` (2 tests)

@@ -27,8 +27,9 @@ local numListStyle = 'Numbering_20_1'
 local listParaStyle = 'List_20_1'
 local numListParaStyle = 'Numbering_20_1'
 
-local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
-require ((utilPath or '') .. 'util')
+local path = require 'pandoc.path'
+utilPath = path.directory(PANDOC_SCRIPT_FILE)
+dofile(path.join{utilPath, 'util.lua'})
 
 local tags = {}
 tags.listStart = '<text:list text:style-name=\"' .. listStyle .. '\">'
