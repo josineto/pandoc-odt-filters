@@ -32,8 +32,6 @@
 -- date: february 2018 (first version)
 -- license: GPL version 3 or later
 
-local abstractODTStyle = 'Resumo'
-
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
 require ((utilPath or '') .. 'util')
 
