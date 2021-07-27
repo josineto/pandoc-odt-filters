@@ -1,0 +1,31 @@
+from: markdown
+standalone: true
+self-contained: true
+
+cite-method: citeproc
+# toc: true
+# toc-depth: 2
+number-sections: true
+preserve-tabs: true
+
+resource-path: ["test"]
+reference-doc: test/custom-reference-doc.odt
+
+filters:
+  - pandoc-crossref
+  - citeproc
+  - abstract.lua
+  - odt-anchors.lua
+  - odt-bib-style.lua
+  - odt-captions.lua
+  - odt-lists.lua
+  - odt-smallcaps.lua
+  - odt-custom-styles.lua
+
+metadata:
+  bibliography: "test/bibliography.yaml"
+  csl: "test/abnt.csl"
+  link-citations: true
+  linkReferences: true
+  autoSectionLabels: true
+  nameInLink: true
