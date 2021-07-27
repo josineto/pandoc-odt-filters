@@ -17,11 +17,9 @@ Another one, `abstract.lua`, is targeted at all but ODT and DOCX writers. Former
 
 ## Installation
 
-Just download whatever filter you want, *along with* `util.lua` (see below), and use it!
+You can either go to [Releases](https://github.com/jzeneto/pandoc-odt-filters/releases) and download all files in a ZIP, or download just some of them via GitHub interface. In latter case, just don't forget to also download `util.lua` (see important note below).
 
 ## Usage
-
-You can either go to [Releases](https://github.com/jzeneto/pandoc-odt-filters/releases) and download all files in a ZIP, or download just some of them via GitHub interface. In latter case, just don't forget to also download `util.lua` (see important note below).
 
 You can use as many filters as you want. Each filter must have his own declaration in command line: `--lua-filter <filter-name>.lua`. Here's an example with just one filter:
 
