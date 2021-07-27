@@ -24,7 +24,7 @@
 -- author:
 --   - name: José de Mattos Neto
 --   - address: https://github.com/jzeneto
--- date: february 2018
+-- date: february 2018 (first version)
 -- license: GPL version 3 or later
 
 local utilPath = string.match(PANDOC_SCRIPT_FILE, '.*[/\\]')
@@ -53,7 +53,7 @@ end
 -- These names are NOT for customization; instead, they are internally
 -- used by LibreOffice to generate lists of figures/tables.
 local sequenceNames = {}
-sequenceNames.image = 'Illustration'
+sequenceNames.image = 'Figure'
 sequenceNames.table = 'Table'
 
 function Image (img)
@@ -69,8 +69,9 @@ function Div (div)
     local id = util.getTableId(div)
     return pandoc.walk_block(div, {
       Table = function(el)
-        if el.caption then
-          el.caption = correctCaption(el.caption, id, sequenceNames.table)
+        if el.caption and el.caption.long and el.caption.long[1] then
+          local content = el.caption.long[1].content
+          el.caption.long[1].content = correctCaption(content, id, sequenceNames.table)
         end
         return el
       end
